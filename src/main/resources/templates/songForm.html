@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="base :: nav"></div>
+<form action="#"
+      th:action="@{/process}"
+      th:object="${song}"
+      method="post">
+
+    <input type="hidden" th:field="*{id}"/>
+
+    Title : <input type="text" th:field="*{title}"/>
+    <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span><br/>
+
+    Year : <input type="text" th:field="*{year}"/>
+    <span th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></span><br/>
+
+    Album :
+    <select name="album" id="album" class="custom-select" th:field="*{album}">
+        <option value="">Select Album</option>
+        <option th:each="al : ${albums}"
+                th:value="${al.id}"
+                th:text="${al.name}"/>
+    </select><br/>
+
+    Description : <textarea rows="3" th:field="*{description}"/>
+    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span><br/>
+
+
+    <input type="submit" value="Submit"/>
+</form>
+</body>
+</html>

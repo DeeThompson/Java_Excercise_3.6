@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="base::nav"></div>
+Title:<span th:text="${song.title}"></span><br/>
+Album:<span th:text="${song.album.name}"></span><br/>
+Year:<span th:text="${song.year}"></span><br/>
+Description<p th:text="${song.description}"></p><br/>
+<a th:href="@{/delete/{id}(id=${song.id})}">Delete this song</a>
+
+</body>
+</html>

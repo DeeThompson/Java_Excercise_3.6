@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.Thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="base :: nav"></div>
+<form action="#"
+      th:action="@{/processAlbum}"
+      th:object="${album}"
+      method="post">
+    <input type="hidden" th:field="*{id}"/>
+
+    Name: <input type="text" th:field="*{name}"/>
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span><br/>
+
+    Genre: <input type="text" th:field="*{genre}"/>
+    <span th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}"></span><br/>
+
+    <input type="submit" value="Submit"/>
+</form>
+</body>
+</html>
